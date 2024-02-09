@@ -1,7 +1,15 @@
+import "reflect-metadata";
+import { AppDataSource } from "./data-source";
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { HelloResolver } from './resolvers/hello';
+
+AppDataSource.initialize().then(() => {
+    console.log("Data Source has been initialized!")})
+    .catch((err) => {
+        console.error("Error during Data SOice Initialization", err);
+    })
 
 const main = async () => {
     const app = express() as any;
