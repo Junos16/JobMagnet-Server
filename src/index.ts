@@ -1,12 +1,12 @@
 import express from 'express';
-import { ApolloServer } from 'apollo-server';
+import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { HelloResolver } from './resolvers/hello';
 
 const main = async () => {
-    const app = express();
+    const app = express() as any;
 
-    app.get('/', (_, res) => {
+    app.get('/', (_: any, res: { send: (arg0: string) => void; }) => {
         res.send("hello");
     })
 
@@ -17,6 +17,7 @@ const main = async () => {
         })
     });
 
+    apolloServer.applyMiddleware({ app });
     app.listen(4000, () => {
         console.log('server started on localhost:4000')
     });
