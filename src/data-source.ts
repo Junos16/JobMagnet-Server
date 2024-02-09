@@ -9,6 +9,8 @@ export const AppDataSource = new DataSource({
     password: "test",
     database: "test",
     entities: [Post],
-    synchronize: true,
+    migrations: [],
+    migrationsTableName: "",
+    synchronize: true, //consider creating migrations
     logging: true,
 })
